@@ -1,0 +1,11 @@
+version: '3'
+services:
+  solr:
+    image: solr
+    ports:
+     - "8983:8983"
+     - "2222:22"
+    volumes:
+      - data:/var/solr
+volumes:
+  data:

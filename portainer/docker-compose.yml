@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  portainer-ce:
+    ports:
+      - '9000:9000'
+      - '8000:8000'
+    container_name: portainer
+    networks:
+      - niginx_proxy_manager
+    restart: always
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/home/docker/portainer:/data'
+    image: 'portainer/portainer-ce:latest'
+
+networks:
+  nginx_proxy_manager:
+    external: true

@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  sql-server-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: somecontainername
+    networks:
+      - somenetwork
+    restart: always
+    ports:
+      - '1433:1433'
+    volumes:
+      - /var/lib/docker/volumes/mssql/_data:/home/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=somepasswordMakeSureToChangeIt
+      
+networks:
+  somenetwork:
+    external: true

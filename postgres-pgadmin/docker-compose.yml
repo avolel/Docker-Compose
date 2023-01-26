@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+    postgres:
+        image: 'postgres:latest'
+        container_name: somecontainer
+        networks:
+          - network1
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=somepassword
+        ports:
+          - '5432:5432'
+        restart: always
+        volumes:
+          - data:/var/lib/postgresql/data
+
+    pg-admin:
+        image: 'dpage/pgadmin4:latest'
+        container_name: somecontainer
+        networks:
+          - network1
+        environment:
+          - PGADMIN_DEFAULT_EMAIL=yourEmail
+          - PGADMIN_DEFAULT_PASSWORD=somepassword
+          - PGADMIN_LISTEN_PORT=5050
+        ports:
+          - '5050:5050'
+networks:
+  network1:
+    external: true
+volumes:
+    data:
